@@ -1,0 +1,23 @@
+<mat-sidenav-container fxLayout="row" class="app-sidenav-container" fxFill [dir]="dir"
+  [class.alternate-theme]="isAlternateTheme">
+  <mat-sidenav #sidenav class="app-sidenav mat-elevation-z10" fxFlex="1 1 100%" [opened]="!isScreenSmall"
+    [mode]="isScreenSmall ? 'over' : 'side'">
+    <mat-toolbar color="primary">
+      Contacts
+    </mat-toolbar>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let user of users">
+        <a matLine [routerLink]="['/contactmanager', user.id]">
+          <mat-icon svgIcon="{{user.avatar}}"></mat-icon> {{ user.name }}
+        </a>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content fxLayout="column" fxFlex="1 1 100%" fxFill>
+    <app-toolbar (toggleDir)="toggleDir()" (toggleTheme)="toggleTheme()" (toggleSidenav)="sidenav.toggle()"></app-toolbar>
+    <div class="wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

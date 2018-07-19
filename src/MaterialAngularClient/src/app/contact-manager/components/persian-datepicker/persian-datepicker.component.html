@@ -1,0 +1,41 @@
+<h2 mat-dialog-title>Persian DatePicker</h2>
+<mat-dialog-content>
+  <div fxLayout="column">
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker1" placeholder="Simple datepicker">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker6" placeholder="json gregorian input" [(ngModel)]="dateControl">
+      <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+      <mat-datepicker #picker6></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker2" placeholder="startAt 2017-01-01 and startView=year">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2 startView="year" [startAt]="startDate"></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker3" [min]="minDate" [max]="maxDate" placeholder="min: 2017-10-02 and max: 1396-07-29">
+      <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+      <mat-datepicker #picker3></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker4" [matDatepickerFilter]="myFilter" placeholder="Date validation - Datepicker Filter">
+      <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+      <mat-datepicker #picker4></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker5" (dateInput)="onInput($event)" (dateChange)="onChange($event)"
+        placeholder="dateInput and dateChange events">
+      <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+      <mat-datepicker #picker5></mat-datepicker>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button color="primary" [mat-dialog-close]="true">
+    <mat-icon>cancel</mat-icon> Close
+  </button>
+</mat-dialog-actions>

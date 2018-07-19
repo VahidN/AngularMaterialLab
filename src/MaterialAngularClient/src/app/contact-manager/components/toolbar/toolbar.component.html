@@ -1,0 +1,18 @@
+<mat-toolbar color="primary">
+  <button mat-button fxHide fxHide.xs="false" class="sidenav-toggle" (click)="toggleSidenav.emit()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span>Contact Manager</span>
+
+  <span fxFlex="1 1 auto"></span>
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="openAddContactDialog()">New Contact</button>
+    <button mat-menu-item (click)="toggleTheme.emit()">Toggle theme</button>
+    <button mat-menu-item (click)="toggleDir.emit()">Toggle dir</button>
+    <button mat-menu-item (click)="openPersianDatepickerDialog()">Persian Datepicker</button>
+  </mat-menu>
+</mat-toolbar>

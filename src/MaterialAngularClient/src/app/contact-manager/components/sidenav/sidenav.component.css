@@ -1,0 +1,11 @@
+.app-sidenav-container {
+  position: fixed;
+}
+
+.app-sidenav {
+  width: 240px;
+}
+
+.wrapper {
+  margin: 50px;
+}
