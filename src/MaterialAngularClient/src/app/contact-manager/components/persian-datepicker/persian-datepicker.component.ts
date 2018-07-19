@@ -9,7 +9,7 @@ import * as moment from "jalali-moment";
 })
 export class PersianDatepickerComponent implements OnInit {
 
-  startDate = moment("2017-01-01", "YYYY-MM-DD");
+  startDate = moment("2017-01-01", "YYYY-MM-DD"); // = moment.from("2017-01-01", "en");
   minDate = moment.from("2017-10-02", "en"); // = moment('2017-10-02', 'YYYY-MM-DD');
   maxDate = moment.from("1396-07-29", "fa"); // = moment('1396-07-29', 'jYYYY-jMM-jDD');
   jsonDate = "2018-01-08T20:21:29.4674496";
