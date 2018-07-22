@@ -2,10 +2,12 @@
   <button mat-button fxHide fxHide.xs="false" class="sidenav-toggle" (click)="toggleSidenav.emit()">
     <mat-icon>menu</mat-icon>
   </button>
-
   <span>Contact Manager</span>
 
   <span fxFlex="1 1 auto"></span>
+  <button mat-button (click)="openSearchDialog()">
+    <mat-icon>search</mat-icon>
+  </button>
   <button mat-button [matMenuTriggerFor]="menu">
     <mat-icon>more_vert</mat-icon>
   </button>

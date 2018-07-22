@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ASPNETCore2JwtAuthentication.DataLayer.Context;
@@ -12,6 +13,7 @@ namespace MaterialAspNetCoreBackend.Services
         Task<List<User>> GetAllUsersIncludeNotesAsync();
         Task<User> GetUserIncludeNotesAsync(int id);
         Task<User> AddUserAsync(User user);
+        Task<List<User>> SearchUsersAsync(string term);
     }
 
     public class UsersService : IUsersService
@@ -40,6 +42,15 @@ namespace MaterialAspNetCoreBackend.Services
             var userEntry = _users.Add(user);
             await _uow.SaveChangesAsync();
             return userEntry.Entity;
+        }
+
+        public Task<List<User>> SearchUsersAsync(string term)
+        {
+            if (string.IsNullOrWhiteSpace(term))
+            {
+                return Task.FromResult(new List<User>());
+            }
+            return _users.Where(user => user.Name.StartsWith(term)).ToListAsync();
         }
     }
 }

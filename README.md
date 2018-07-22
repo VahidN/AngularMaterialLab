@@ -10,6 +10,7 @@ This project is a collection of tips and tricks about how to use an Angular Mate
 - How to work with data tables including paging, sorting and filtering.
 - How to create a custom template and change it dynamically.
 - How to change the datepicker's format to Persian.
+- How to use the auto-complete component with async data.
 
 How to run it
 -------------

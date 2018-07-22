@@ -47,4 +47,13 @@ export class UserService {
         catchError((error: HttpErrorResponse) => throwError(error))
       );
   }
+
+  searchUsers(term: string): Observable<User[]> {
+    return this.http
+      .get<User[]>(`/api/Typeahead/SearchUsers?term=${encodeURIComponent(term)}`)
+      .pipe(
+        map(response => response || []),
+        catchError((error: HttpErrorResponse) => throwError(error))
+      );
+  }
 }

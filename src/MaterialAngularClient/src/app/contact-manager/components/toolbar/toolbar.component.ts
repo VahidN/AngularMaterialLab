@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { User } from "../../models/user";
 import { NewContactDialogComponent } from "../new-contact-dialog/new-contact-dialog.component";
 import { PersianDatepickerComponent } from "../persian-datepicker/persian-datepicker.component";
+import { SearchAutoCompleteComponent } from "../search-auto-complete/search-auto-complete.component";
 
 @Component({
   selector: "app-toolbar",
@@ -40,6 +41,16 @@ export class ToolbarComponent implements OnInit {
     const dialogRef = this.dialog.open(PersianDatepickerComponent, { width: "650px" });
     dialogRef.afterClosed().subscribe(result => {
       console.log("The PersianDatepicker dialog was closed", result);
+    });
+  }
+
+  openSearchDialog() {
+    const dialogRef = this.dialog.open(SearchAutoCompleteComponent, { width: "650px" });
+    dialogRef.afterClosed().subscribe((result: User) => {
+      console.log("The SearchAutoComplete dialog was closed", result);
+      if (result) {
+        this.router.navigate(["/contactmanager", result.id]);
+      }
     });
   }
 

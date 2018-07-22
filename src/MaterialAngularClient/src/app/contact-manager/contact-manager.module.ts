@@ -6,6 +6,7 @@ import { MainContentComponent } from "./components/main-content/main-content.com
 import { NewContactDialogComponent } from "./components/new-contact-dialog/new-contact-dialog.component";
 import { NotesComponent } from "./components/notes/notes.component";
 import { PersianDatepickerComponent } from "./components/persian-datepicker/persian-datepicker.component";
+import { SearchAutoCompleteComponent } from "./components/search-auto-complete/search-auto-complete.component";
 import { SidenavComponent } from "./components/sidenav/sidenav.component";
 import { ToolbarComponent } from "./components/toolbar/toolbar.component";
 import { ContactManagerAppComponent } from "./contact-manager-app/contact-manager-app.component";
@@ -24,10 +25,13 @@ import { ContactManagerRoutingModule } from "./contact-manager-routing.module";
     SidenavComponent,
     NotesComponent,
     NewContactDialogComponent,
-    PersianDatepickerComponent],
+    PersianDatepickerComponent,
+    SearchAutoCompleteComponent
+  ],
   entryComponents: [
     NewContactDialogComponent,
-    PersianDatepickerComponent
+    PersianDatepickerComponent,
+    SearchAutoCompleteComponent
   ]
 })
 export class ContactManagerModule { }
