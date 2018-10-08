@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { MatDatepickerInputEvent } from "@angular/material";
 import * as moment from "jalali-moment";
 
+import { UserService } from "../../services/user.service";
+
 @Component({
   selector: "app-persian-datepicker",
   templateUrl: "./persian-datepicker.component.html",
@@ -21,17 +23,34 @@ export class PersianDatepickerComponent implements OnInit {
     return day !== 5 && day !== 4;
   }
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
   }
 
   onInput(event: MatDatepickerInputEvent<moment.Moment>) {
     console.log("OnInput: ", event.value);
+    this.postDateValue(event.value.utc(true).toJSON());
   }
 
   onChange(event: MatDatepickerInputEvent<moment.Moment>) {
     const x = moment(event.value).format("jYYYY/jMM/jDD");
     console.log("OnChange: ", x);
+    this.postDateValue(event.value.utc(true).toJSON());
+  }
+
+  postDate() {
+    if (this.dateControl) {
+      console.log(`this.dateControl: ${this.dateControl}`);
+      const date = moment.from(this.dateControl, "en").utc(true).toJSON();
+      console.log(`date: ${date}`);
+      this.postDateValue(date);
+    }
+  }
+
+  private postDateValue(value: string) {
+    console.log(`Posting ${value} to server.`);
+    this.userService.postBirthDate(value)
+      .subscribe(data => console.log(`Server's response: ${data}.`));
   }
 }

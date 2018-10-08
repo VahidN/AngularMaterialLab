@@ -56,4 +56,16 @@ export class UserService {
         catchError((error: HttpErrorResponse) => throwError(error))
       );
   }
+
+  postBirthDate(date: string): Observable<string> {
+    const headers = new HttpHeaders({ "Content-Type": "application/json" });
+    return this.http
+      .post<string>("/api/PersianDatepicker", { "BirthDate": date }, { headers: headers }).pipe(
+        map(response => {
+          const data = response || {} as string;
+          return data;
+        }),
+        catchError((error: HttpErrorResponse) => throwError(error))
+      );
+  }
 }
