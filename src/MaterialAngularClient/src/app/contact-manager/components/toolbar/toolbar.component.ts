@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
-import { MatDialog, MatSnackBar, MatSnackBarRef, SimpleSnackBar } from "@angular/material";
+import { MatDialog } from "@angular/material/dialog";
+import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 
 import { User } from "../../models/user";
@@ -10,10 +11,9 @@ import { SearchAutoCompleteComponent } from "../search-auto-complete/search-auto
 @Component({
   selector: "app-toolbar",
   templateUrl: "./toolbar.component.html",
-  styleUrls: ["./toolbar.component.css"]
+  styleUrls: ["./toolbar.component.css"],
 })
 export class ToolbarComponent implements OnInit {
-
   @Output() toggleSidenav = new EventEmitter<void>();
   @Output() toggleTheme = new EventEmitter<void>();
   @Output() toggleDir = new EventEmitter<void>();
@@ -21,31 +21,40 @@ export class ToolbarComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
-    private router: Router) { }
+    private router: Router
+  ) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   openAddContactDialog(): void {
-    const dialogRef = this.dialog.open(NewContactDialogComponent, { width: "450px" });
+    const dialogRef = this.dialog.open(NewContactDialogComponent, {
+      width: "450px",
+    });
     dialogRef.afterClosed().subscribe((result: User) => {
       console.log("The AddContact dialog was closed", result);
       if (result) {
-        this.openSnackBar(`${result.name} contact has been added.`, "Navigate").onAction().subscribe(() => {
-          this.router.navigate(["/contactmanager", result.id]);
-        });
+        this.openSnackBar(`${result.name} contact has been added.`, "Navigate")
+          .onAction()
+          .subscribe(() => {
+            this.router.navigate(["/contactmanager", result.id]);
+          });
       }
     });
   }
 
   openPersianDatepickerDialog() {
-    const dialogRef = this.dialog.open(PersianDatepickerComponent, { width: "650px" });
-    dialogRef.afterClosed().subscribe(result => {
+    const dialogRef = this.dialog.open(PersianDatepickerComponent, {
+      width: "650px",
+    });
+    dialogRef.afterClosed().subscribe((result) => {
       console.log("The PersianDatepicker dialog was closed", result);
     });
   }
 
   openSearchDialog() {
-    const dialogRef = this.dialog.open(SearchAutoCompleteComponent, { width: "650px" });
+    const dialogRef = this.dialog.open(SearchAutoCompleteComponent, {
+      width: "650px",
+    });
     dialogRef.afterClosed().subscribe((result: User) => {
       console.log("The SearchAutoComplete dialog was closed", result);
       if (result) {
@@ -54,7 +63,10 @@ export class ToolbarComponent implements OnInit {
     });
   }
 
-  openSnackBar(message: string, action: string): MatSnackBarRef<SimpleSnackBar> {
+  openSnackBar(
+    message: string,
+    action: string
+  ): MatSnackBarRef<SimpleSnackBar> {
     return this.snackBar.open(message, action, {
       duration: 5000,
     });

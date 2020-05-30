@@ -7,4 +7,7 @@
     <ProjectReference Include="..\MaterialAspNetCoreBackend.DomainClasses\MaterialAspNetCoreBackend.DomainClasses.csproj" />
     <ProjectReference Include="..\MaterialAspNetCoreBackend.DataLayer\MaterialAspNetCoreBackend.DataLayer.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.4" />
+  </ItemGroup>
 </Project>

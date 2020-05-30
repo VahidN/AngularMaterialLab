@@ -1,11 +1,10 @@
 ﻿import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import { ModuleWithProviders, NgModule } from "@angular/core";
+import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule } from "@angular/forms";
 
 import { MaterialModule } from "./material.module";
-import { FlexLayoutModule } from "@angular/flex-layout";
-
 
 @NgModule({
   imports: [
@@ -13,7 +12,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     FormsModule,
     HttpClientModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
   ],
   entryComponents: [
     // All components about to be loaded "dynamically" need to be declared in the entryComponents section.
@@ -27,8 +26,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     FormsModule,
     HttpClientModule,
     MaterialModule,
-    FlexLayoutModule
-  ]
+    FlexLayoutModule,
+  ],
   /* No providers here! Since they’ll be already provided in AppModule. */
 })
 export class SharedModule {
@@ -36,7 +35,9 @@ export class SharedModule {
     // Forcing the whole app to use the returned providers from the AppModule only.
     return {
       ngModule: SharedModule,
-      providers: [ /* All of your services here. It will hold the services needed by `itself`. */]
+      providers: [
+        /* All of your services here. It will hold the services needed by `itself`. */
+      ],
     };
   }
 }

@@ -1,15 +1,16 @@
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from "@angular/core";
-import { MatPaginator, MatSort, MatTableDataSource } from "@angular/material";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
 
 import { UserNote } from "../../models/user-note";
 
 @Component({
   selector: "app-notes",
   templateUrl: "./notes.component.html",
-  styleUrls: ["./notes.component.css"]
+  styleUrls: ["./notes.component.css"],
 })
 export class NotesComponent implements OnInit, AfterViewInit {
-
   @Input() notes: UserNote[];
 
   displayedColumns = ["position", "title", "date"];
@@ -18,7 +19,7 @@ export class NotesComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource<UserNote>(this.notes);
@@ -32,5 +33,4 @@ export class NotesComponent implements OnInit, AfterViewInit {
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase(); // MatTableDataSource defaults to lowercase matches
   }
-
 }

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { MatAutocompleteSelectedEvent, MatDialogRef } from "@angular/material";
+import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
+import { MatDialogRef } from "@angular/material/dialog";
 import { Subject, Subscription } from "rxjs";
 import { debounceTime, distinctUntilChanged, finalize, switchMap, tap } from "rxjs/operators";
 
@@ -9,10 +10,9 @@ import { UserService } from "../../services/user.service";
 @Component({
   selector: "app-search-auto-complete",
   templateUrl: "./search-auto-complete.component.html",
-  styleUrls: ["./search-auto-complete.component.css"]
+  styleUrls: ["./search-auto-complete.component.css"],
 })
 export class SearchAutoCompleteComponent implements OnInit, OnDestroy {
-
   private modelChanged: Subject<string> = new Subject<string>();
   private dueTime = 300;
   private modelChangeSubscription: Subscription;
@@ -23,21 +23,22 @@ export class SearchAutoCompleteComponent implements OnInit, OnDestroy {
 
   constructor(
     private userService: UserService,
-    private dialogRef: MatDialogRef<SearchAutoCompleteComponent>) { }
+    private dialogRef: MatDialogRef<SearchAutoCompleteComponent>
+  ) {}
 
   ngOnInit() {
     this.modelChangeSubscription = this.modelChanged
       .pipe(
         debounceTime(this.dueTime),
         distinctUntilChanged(),
-        tap(() => this.isLoading = true),
-        switchMap(inputValue =>
-          this.userService.searchUsers(inputValue).pipe(
-            finalize(() => this.isLoading = false)
-          )
+        tap(() => (this.isLoading = true)),
+        switchMap((inputValue) =>
+          this.userService
+            .searchUsers(inputValue)
+            .pipe(finalize(() => (this.isLoading = false)))
         )
       )
-      .subscribe(users => {
+      .subscribe((users) => {
         this.filteredUsers = users;
       });
   }

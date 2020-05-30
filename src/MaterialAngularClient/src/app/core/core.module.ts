@@ -16,7 +16,7 @@ import { RouterModule } from "@angular/router";
        This new feature allows cleaning up the providers section from the CoreModule.
        But if you want to provide something with an InjectionToken other that its class, you still have to use this section.
     */
-  ]
+  ],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() core: CoreModule) {

@@ -1,23 +1,25 @@
-﻿import { DateAdapter } from "@angular/material";
+﻿import { DateAdapter } from "@angular/material/core";
 import * as jalaliMoment from "jalali-moment";
 
 export const PERSIAN_DATE_FORMATS = {
   parse: {
-    dateInput: "jYYYY/jMM/jDD"
+    dateInput: "jYYYY/jMM/jDD",
   },
   display: {
     dateInput: "jYYYY/jMM/jDD",
     monthYearLabel: "jYYYY jMMMM",
     dateA11yLabel: "jYYYY/jMM/jDD",
-    monthYearA11yLabel: "jYYYY jMMMM"
-  }
+    monthYearA11yLabel: "jYYYY jMMMM",
+  },
 };
 
-export class MaterialPersianDateAdapter extends DateAdapter<jalaliMoment.Moment> {
-
+export class MaterialPersianDateAdapter extends DateAdapter<
+  jalaliMoment.Moment
+> {
   constructor() {
     super();
     super.setLocale("fa");
+    jalaliMoment.locale("fa");
   }
 
   getYear(date: jalaliMoment.Moment): number {
@@ -91,8 +93,13 @@ export class MaterialPersianDateAdapter extends DateAdapter<jalaliMoment.Moment>
       throw Error(`Invalid date "${date}". Date has to be greater than 0.`);
     }
     const result = jalaliMoment()
-      .jYear(year).jMonth(month).jDate(date)
-      .hours(0).minutes(0).seconds(0).milliseconds(0)
+      .jYear(year)
+      .jMonth(month)
+      .jDate(date)
+      .hours(0)
+      .minutes(0)
+      .seconds(0)
+      .milliseconds(0)
       .locale("fa");
 
     if (this.getMonth(result) !== month) {
@@ -108,7 +115,10 @@ export class MaterialPersianDateAdapter extends DateAdapter<jalaliMoment.Moment>
     return jalaliMoment().locale("fa");
   }
 
-  parse(value: any, parseFormat: string | string[]): jalaliMoment.Moment | null {
+  parse(
+    value: any,
+    parseFormat: string | string[]
+  ): jalaliMoment.Moment | null {
     if (value && typeof value === "string") {
       return jalaliMoment(value, parseFormat, "fa");
     }
@@ -123,15 +133,24 @@ export class MaterialPersianDateAdapter extends DateAdapter<jalaliMoment.Moment>
     return date.format(displayFormat);
   }
 
-  addCalendarYears(date: jalaliMoment.Moment, years: number): jalaliMoment.Moment {
+  addCalendarYears(
+    date: jalaliMoment.Moment,
+    years: number
+  ): jalaliMoment.Moment {
     return this.clone(date).add(years, "jYear");
   }
 
-  addCalendarMonths(date: jalaliMoment.Moment, months: number): jalaliMoment.Moment {
+  addCalendarMonths(
+    date: jalaliMoment.Moment,
+    months: number
+  ): jalaliMoment.Moment {
     return this.clone(date).add(months, "jmonth");
   }
 
-  addCalendarDays(date: jalaliMoment.Moment, days: number): jalaliMoment.Moment {
+  addCalendarDays(
+    date: jalaliMoment.Moment,
+    days: number
+  ): jalaliMoment.Moment {
     return this.clone(date).add(days, "jDay");
   }
 
