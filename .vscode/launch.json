@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/src/MaterialAspNetCoreBackend/MaterialAspNetCoreBackend.WebApp/bin/Debug/netcoreapp2.1/MaterialAspNetCoreBackend.WebApp.dll",
+            "program": "${workspaceFolder}/src/MaterialAspNetCoreBackend/MaterialAspNetCoreBackend.WebApp/bin/Debug/netcoreapp3.1/MaterialAspNetCoreBackend.WebApp.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/MaterialAspNetCoreBackend/MaterialAspNetCoreBackend.WebApp",
             "stopAtEntry": false,
