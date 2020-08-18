@@ -31,7 +31,7 @@ import { MaterialModule } from "./material.module";
   /* No providers here! Since they’ll be already provided in AppModule. */
 })
 export class SharedModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<SharedModule> {
     // Forcing the whole app to use the returned providers from the AppModule only.
     return {
       ngModule: SharedModule,

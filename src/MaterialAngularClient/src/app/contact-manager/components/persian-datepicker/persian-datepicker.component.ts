@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { MatDatepickerInputEvent } from "@angular/material/datepicker/datepicker-input";
+import { MatDatepickerInputEvent } from "@angular/material/datepicker/datepicker-input-base";
 import * as jalaliMoment from "jalali-moment";
 
 import { UserService } from "../../services/user.service";
@@ -25,9 +25,7 @@ export class PersianDatepickerComponent implements OnInit {
   constructor(private userService: UserService) {
     jalaliMoment.locale("fa", { useGregorianParser: true });
 
-    this.jsonDate = jalaliMoment("2018-01-08T20:21:29.4674496").format(
-      "YYYY/MM/DD"
-    );
+    this.jsonDate = jalaliMoment("2018-01-08T20:21:29.4674496").format();
     this.dateControl = this.jsonDate;
 
     this.startDate = jalaliMoment("2017-01-01").format("YYYY/MM/DD");
